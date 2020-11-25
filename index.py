@@ -217,4 +217,4 @@ keep_alive()
 
 #aqui va el token
 
-bot.run('Nzc1MDMyNDI4MzgwMjkxMDkz.X6gbMg.uZPqdUUBJvBh8MlKnICO6OrOFvA')
+bot.run('')
