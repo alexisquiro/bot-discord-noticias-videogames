@@ -6,7 +6,7 @@ from scrap.scrpPuregamming import ScrpPuregamming
 from scrap.scrpIgnesp import ScrpIgnesp
 import time
 import datetime
-from keep_alive import keep_alive
+
 from threading import Thread
 from flask import Flask
 import random
@@ -16,8 +16,8 @@ import random
 class Admin(object):
     def __init__(self):
         #aqui tenemos los datos del admin que va a prender y apagar el bot
-        self.name = '!                       Izhan.l8'
-        self.discriminator = '0617'
+        self.name = 'alexis.yo'
+        self.discriminator = '8328'
         self.on = True
         self.ctx = ''
         self.now=datetime.datetime.now()
@@ -84,7 +84,7 @@ ign = ScrpIgnesp()
 client = discord.Client()
 bot = commands.Bot(command_prefix='!', description='Bot de noticias ')
 
-
+'''
 #comandos secundarios que activa el comando principal no ejecutar
 @bot.command(name='url3')
 async def url3(ctx):
@@ -117,24 +117,26 @@ async def url1(ctx):
 	else:
 		print('hobby')
 
-
-
+'''
 
 
 #aqui puedes cambiar las horas 
 @tasks.loop(hours=8)
-async def sendHello():
+async def notice():
     now=datetime.datetime.now()
     print(now)
     ctx =admin.getCtx()
     await ctx.channel.send('sendHello')
-    await url1(ctx)
+    hobbyurl = hobby.getNotice()
+	await ctx.channel.send(hobbyurl)
     #este time es para que no envie las noticias todas juntas
     time.sleep(5)
-    await url2(ctx)
+    ignurl = ign.getNoticexbox()
+	await ctx.channel.send(ignurl)
     #igual este
     time.sleep(10)
-    await url3(ctx)
+    ignurl = ign.getNoticeps5()
+	await ctx.channel.send(ignurl)
     #igual este
     time.sleep(12)
     pureUrl = pureg.getNotice()
@@ -172,7 +174,7 @@ async def on_message(ctx):
         #aqui se espera que el admin ingrese un mensaje desde el canal que se quiere 
         #y se cierra para que no haya interferencia esto se ejecuta una vez si quiere que pare hay que apagarlo 
         admin.setOnoff()
-        sendHello.start()
+        notice.start()
         admin.setCtx(ctx)
         print(ctx)
 
@@ -215,4 +217,4 @@ keep_alive()
 
 #aqui va el token
 
-bot.run('Nzc2MTQxNzA3NTQ4Njg4Mzk0.X6wkSw.xmH9NLGp0YBoTWGfygAOLwMXfMI')
+bot.run('Nzc1MDMyNDI4MzgwMjkxMDkz.X6gbMg.uZPqdUUBJvBh8MlKnICO6OrOFvA')
